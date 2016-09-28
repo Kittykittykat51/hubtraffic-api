@@ -6,7 +6,7 @@ namespace HubtrafficApi;
  * Video data object
  * @package HubtrafficApi
  * @author Pavel Plzák <pavelplzak@protonmail.com>
- * @licence MIT
+ * @license MIT
  * @version 1.0.0
  * 
  * @property-read string $id

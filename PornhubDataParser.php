@@ -5,7 +5,7 @@ namespace HubtrafficApi;
 /**
  * Parse data from pornhub api
  * @author Pavel Plzák <pavelplzak@protonmail.com>
- * @licence MIT
+ * @license MIT
  * @version 1.0.0
  * @package HubtrafficApi
  */

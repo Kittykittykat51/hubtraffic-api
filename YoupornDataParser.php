@@ -6,7 +6,7 @@ namespace HubtrafficApi;
 /**
  * Parse data from youporn api
  * @author Pavel Plzák <pavelplzak@protonmail.com>
- * @licence MIT
+ * @license MIT
  * @version 1.0.0
  * @package HubtrafficApi
  */
