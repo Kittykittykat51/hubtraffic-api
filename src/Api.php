@@ -5,7 +5,7 @@ namespace HubtrafficApi;
 /**
  * Hubtraffic api wrapper
  * @author Pavel Plzák <pavelplzak@protonmail.com>
- * @license MIT
+ * @licence MIT
  * @version 1.0.0
  * @package HubtrafficApi
  */
@@ -107,18 +107,29 @@ class Api {
 	 */
 	public function getVideo($url) {
 		$details = $this->parseUrl($url);
-		$config = $this->config[$details['source']];
+		return $this->getVideoBySourceAndId($details['source'], $details['videoId']);
+	}
 
-		$videoData = $this->getApiData($config['url']['video'] . $details['videoId']);
+
+	/**
+	 * Returns video object by source and video id
+	 * @param string $source
+	 * @param string $id
+	 * @return \HubtrafficApi\Video
+	 */
+	public function getVideoBySourceAndId($source, $id) {
+		$config = $this->config[$source];
+
+		$videoData = $this->getApiData($config['url']['video'] . $id);
 		if (empty($videoData->video)) {
 			return false;
 		}
 
-		$video = $this->getDataParser($details['source'])->parseVideoData($details['source'], $details['videoId'], $videoData);
+		$video = $this->getDataParser($source)->parseVideoData($source, $id, $videoData);
 
-		$embedData = $this->getApiData($config['url']['embed'] . $details['videoId']);
+		$embedData = $this->getApiData($config['url']['embed'] . $id);
 		if ($embedData) {
-			$embed = $this->getDataParser($details['source'])->parseEmbedData($embedData);
+			$embed = $this->getDataParser($source)->parseEmbedData($embedData);
 			if ($embed) {
 				$parts = explode('</iframe>', $embed);
 				$video->setEmbed($parts[0] . '</iframe>');
@@ -127,7 +138,6 @@ class Api {
 
 		return $video;
 	}
-
 
 
 	/**
